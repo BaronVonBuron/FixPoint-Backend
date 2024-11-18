@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixPoint-Backend", "FixPoint-Backend\FixPoint-Backend.csproj", "{58F7D895-7C66-4175-B412-5E16E5499399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixPoint-Backend-Test", "FixPoint-Backend-Test\FixPoint-Backend-Test.csproj", "{80D4D4F7-3826-4C29-BD13-F116206A8981}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58F7D895-7C66-4175-B412-5E16E5499399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F7D895-7C66-4175-B412-5E16E5499399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F7D895-7C66-4175-B412-5E16E5499399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F7D895-7C66-4175-B412-5E16E5499399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D4D4F7-3826-4C29-BD13-F116206A8981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D4D4F7-3826-4C29-BD13-F116206A8981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D4D4F7-3826-4C29-BD13-F116206A8981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D4D4F7-3826-4C29-BD13-F116206A8981}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
