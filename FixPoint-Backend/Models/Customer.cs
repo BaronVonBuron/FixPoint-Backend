@@ -1,19 +1,33 @@
-﻿namespace FixPoint_Backend.Models;
+﻿using System.Dynamic;
+
+namespace FixPoint_Backend.Models;
 
 public class Customer
 {
-    Guid ID { get; set; }
-    string Name { get; set; }
-    string Email { get; set; }
-    string Phone { get; set; }
-    string CPRCVR { get; set; }
+    public Guid ID { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string Phonenumber { get; set; }
+    public string CPRCVR { get; set; }
     
+    // Parameterized constructor
     public Customer(string name, string email, string phone, string cprcvr)
     {
         ID = Guid.NewGuid();
         Name = name;
         Email = email;
-        Phone = phone;
+        Phonenumber = phone;
         CPRCVR = cprcvr;
+    }
+    
+    // Parameterless constructor for EF Core
+    public Customer()
+    {
+        ID = Guid.NewGuid();
+    }
+
+    public Guid GetID()
+    {
+        return ID;
     }
 }

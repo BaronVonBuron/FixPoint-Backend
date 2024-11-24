@@ -2,12 +2,12 @@
 
 public class Message
 {
-    Guid ID { get; set; }
-    Guid CaseID { get; set; }
-    Guid? TechnicianID { get; set; }
-    Guid? CustomerID { get; set; }
-    string Text { get; set; }
-    DateTime TimeStamp { get; set; }
+    public Guid ID { get; set; }
+    public Guid CaseID { get; set; }
+    public Guid? TechnicianID { get; set; }
+    public Guid? CustomerID { get; set; }
+    public string Text { get; set; }
+    public DateTime TimeStamp { get; set; }
     
     public Message(Guid caseID, Guid? technicianID, Guid? customerID, string text, DateTime timeStamp)
     {
@@ -17,5 +17,15 @@ public class Message
         CustomerID = customerID;
         Text = text;
         TimeStamp = timeStamp;
+    }
+    
+    public Message()
+    {
+        
+    }
+    
+    public Guid GetID()
+    {
+        return ID;
     }
 }
