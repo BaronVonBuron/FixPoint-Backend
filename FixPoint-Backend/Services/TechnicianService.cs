@@ -20,6 +20,7 @@ public class TechnicianService
     
     public Technician GetTechnician(Guid id)
     {
+        
         _logger.LogInformation("Getting a technician by id");
         return _technicianRepository.GetTechnician(id);
     }

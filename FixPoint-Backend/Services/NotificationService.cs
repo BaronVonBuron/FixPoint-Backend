@@ -19,6 +19,10 @@ public class NotificationService
     
     public void AddNotification(Notification notification)
     {
+        if (notification == null)
+        {
+            nullCaseException(notification);
+        }
         _logger.LogInformation("Adding a new notification");
         _notificationRepository.AddNotification(notification);
     }
@@ -33,5 +37,11 @@ public class NotificationService
     {
         _logger.LogInformation("Getting all notifications");
         return _notificationRepository.GetNotifications();
+    }
+    
+    public void nullCaseException(Notification notification)
+    {
+        _logger.LogError("Case is null");
+        throw new ArgumentNullException(nameof(notification));
     }
 }

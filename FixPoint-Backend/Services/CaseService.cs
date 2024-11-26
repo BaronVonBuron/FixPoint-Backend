@@ -19,12 +19,20 @@ public class CaseService
     
     public void AddCase(Case casee)
     {
+        if (casee == null)
+        {
+            nullCaseException(casee);
+        }
         _logger.LogInformation("Adding a new casee");
         _caseeRepository.AddCase(casee);
     }
     
     public void DeleteCase(Case casee)
     {
+        if (casee == null)
+        {
+            nullCaseException(casee);
+        }
         _logger.LogInformation("Deleting a casee");
         _caseeRepository.DeleteCase(casee);
     }
@@ -43,7 +51,17 @@ public class CaseService
     
     public void UpdateCase(Case casee)
     {
+        if (casee == null)
+        {
+            nullCaseException(casee);
+        }
         _logger.LogInformation("Updating a casee");
         _caseeRepository.UpdateCase(casee);
+    }
+
+    public void nullCaseException(Case casee)
+    {
+        _logger.LogError("Case is null");
+        throw new ArgumentNullException(nameof(casee));
     }
 }

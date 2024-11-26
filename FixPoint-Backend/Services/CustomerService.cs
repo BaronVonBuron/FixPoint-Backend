@@ -19,12 +19,20 @@ public class CustomerService
     
     public void AddCustomer(Customer customer)
     {
+        if (customer == null)
+        {
+            nullCaseException(customer);
+        }
         _logger.LogInformation("Adding a new customer");
         _customerRepository.AddCustomer(customer);
     }
     
     public void DeleteCustomer(Customer customer)
     {
+        if (customer == null)
+        {
+            nullCaseException(customer);
+        }
         _logger.LogInformation("Deleting a customer");
         _customerRepository.DeleteCustomer(customer);
     }
@@ -39,5 +47,11 @@ public class CustomerService
     {
         _logger.LogInformation("Getting all customers");
         return _customerRepository.GetCustomers();
+    }
+    
+    public void nullCaseException(Customer customer)
+    {
+        _logger.LogError("Case is null");
+        throw new ArgumentNullException(nameof(customer));
     }
 }

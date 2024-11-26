@@ -3,27 +3,27 @@
 public class Case
 {
     public Guid ID { get; set; }
-    public Guid TechnicianID { get; set; }
-    public Guid CustomerID { get; set; }
+    public Guid TechnicianFK { get; set; }
+    public Guid CustomerFK { get; set; }
     public string Type { get; set; }
     public string Description { get; set; }
     public int Status { get; set; }
     public int Priority { get; set; }
-    public DateTime CreateDate { get; set; }
+    public DateTime CreatedDate { get; set; }
     public DateTime ExpectedDoneDate { get; set; }
     public string? Notes { get; set; }
     
     public Case(Guid technicianID, Guid customerID, string type, string description, 
-        int status, int priority, DateTime createDate, DateTime expectedDoneDate, string? notes)
+        int status, int priority, DateTime createdDate, DateTime expectedDoneDate, string? notes)
     {
         ID = Guid.NewGuid();
-        TechnicianID = technicianID;
-        CustomerID = customerID;
+        TechnicianFK = technicianID;
+        CustomerFK = customerID;
         Type = type;
         Description = description;
         Status = status;
         Priority = priority;
-        CreateDate = createDate;
+        CreatedDate = createdDate;
         ExpectedDoneDate = expectedDoneDate;
         Notes = notes;
     }

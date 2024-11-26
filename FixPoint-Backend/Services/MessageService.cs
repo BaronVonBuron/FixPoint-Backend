@@ -19,6 +19,10 @@ public class MessageService
     
     public void AddMessage(Message message)
     {
+        if (message == null)
+        {
+            nullCaseException(message);
+        }
         _logger.LogInformation("Adding a new message");
         _messageRepository.AddMessage(message);
     }
@@ -33,5 +37,11 @@ public class MessageService
     {
         _logger.LogInformation("Getting all messages");
         return _messageRepository.GetMessages();
+    }
+    
+    public void nullCaseException(Message message)
+    {
+        _logger.LogError("Case is null");
+        throw new ArgumentNullException(nameof(message));
     }
 }
