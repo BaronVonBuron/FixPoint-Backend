@@ -1,6 +1,6 @@
 @FixPoint_Backend_HostAddress = http://localhost:5230
 
-GET {{FixPoint_Backend_HostAddress}}/weatherforecast/
+GET {{FixPoint_Backend_HostAddress}}/fixpoint/
 Accept: application/json
 
 ###
