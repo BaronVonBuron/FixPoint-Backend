@@ -2,6 +2,7 @@ using FixPoint_Backend.DataAccess;
 using FixPoint_Backend.DataAccess.Repositories;
 using FixPoint_Backend.DataAccess.Repositories.RepositoryInterfaces;
 using FixPoint_Backend.Services;
+using FixPoint_Backend.Services.ServiceInterface;
 using Microsoft.EntityFrameworkCore;
 
 // Add services to the container.
@@ -32,6 +33,9 @@ builder.Services.AddScoped<MessageService>();
 
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<NotificationService>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 builder.Services.AddCors(options =>
 {
