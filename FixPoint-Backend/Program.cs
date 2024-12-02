@@ -1,9 +1,12 @@
+using System.Text;
 using FixPoint_Backend.DataAccess;
 using FixPoint_Backend.DataAccess.Repositories;
 using FixPoint_Backend.DataAccess.Repositories.RepositoryInterfaces;
 using FixPoint_Backend.Services;
 using FixPoint_Backend.Services.ServiceInterface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 // Add services to the container.
 
@@ -47,6 +50,28 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader();
         });
 });
+
+var key = builder.Configuration["Jwt:Key"];
+if (string.IsNullOrEmpty(key) || key.Length < 32)
+{
+    throw new InvalidOperationException("JWT signing key must be at least 32 characters long.");
+}
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 
 var app = builder.Build();

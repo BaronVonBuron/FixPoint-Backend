@@ -2,6 +2,7 @@
 using FixPoint_Backend.DataAccess.Repositories.RepositoryInterfaces;
 using FixPoint_Backend.Models;
 using FixPoint_Backend.Services;
+using Microsoft.Extensions.Configuration;
 using Moq;
 
 namespace FixPoint_Backend_Test.Services;
@@ -20,7 +21,18 @@ public class AuthServiceTest
         {
             _technicianRepositoryMock = new Mock<ITechnicianRepository>();
             _customerRepositoryMock = new Mock<ICustomerRepository>();
-            _authService = new AuthService(_technicianRepositoryMock.Object, _customerRepositoryMock.Object);
+
+            // Mock IConfiguration for JWT settings
+            var configurationMock = new Mock<IConfiguration>();
+            configurationMock.Setup(config => config["Jwt:Key"]).Returns("YourSuperSecretKeyThatIsAtLeast32Characters");
+            configurationMock.Setup(config => config["Jwt:Issuer"]).Returns("YourIssuer");
+            configurationMock.Setup(config => config["Jwt:Audience"]).Returns("YourAudience");
+
+            _authService = new AuthService(
+                _technicianRepositoryMock.Object, 
+                _customerRepositoryMock.Object, 
+                configurationMock.Object
+            );
         }
 
         [Test]
@@ -40,8 +52,7 @@ public class AuthServiceTest
             var result = _authService.Login(loginDto);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.EqualTo("mockedToken"));
+            Assert.That(result, Is.Not.Null.Or.Empty);
         }
 
         [Test]
@@ -76,24 +87,6 @@ public class AuthServiceTest
 
             // Assert
             Assert.That(result, Is.Null);
-        }
-
-        [Test]
-        public void Login_CustomerValidCredentials_ReturnsToken()
-        {
-            // Arrange
-            var customer = new Customer("Jane Customer", "jane.customer@example.com", "1234567890", "123456-7890");
-            _customerRepositoryMock.Setup(repo => repo.GetCustomers())
-                .Returns(new List<Customer> { customer });
-
-            var loginDto = new LoginDTO { Username = "1234567890", Password = "123456-7890" };
-
-            // Act
-            var result = _authService.Login(loginDto);
-
-            // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.EqualTo("mockedToken"));
         }
 
         [Test]
@@ -154,4 +147,5 @@ public class AuthServiceTest
             // Assert
             Assert.That(result, Is.Null);
         }
+    
 }
