@@ -21,6 +21,6 @@ public class AuthController : ControllerBase
         {
             return Unauthorized("Invalid credentials");
         }
-        return Ok(token);
+        return Ok(new {token});
     }
 }
