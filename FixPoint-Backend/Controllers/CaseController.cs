@@ -51,7 +51,7 @@ public class CaseController : ControllerBase
         {
             return NotFound("No cases found");
         }
-        return Ok("All casees retrieved");
+        return Ok(clist);
     }
     
     [HttpPut("[action]")]
