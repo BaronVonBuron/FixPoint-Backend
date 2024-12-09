@@ -26,7 +26,7 @@ public class TechnicianController : ControllerBase
         {
             return NotFound("Technician not found");
         }
-        return Ok("Technician: "+id.ToString() + " retrieved");
+        return Ok(t);
     }
     
     [HttpGet("[action]")]

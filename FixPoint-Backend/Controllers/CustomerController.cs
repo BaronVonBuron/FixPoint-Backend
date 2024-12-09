@@ -40,7 +40,7 @@ public class CustomerController : ControllerBase
         {
             return NotFound("Customer not found");
         }
-        return Ok("Customer: "+id.ToString() + " retrieved");
+        return Ok(c);
     }
     
     [HttpGet("[action]")]
