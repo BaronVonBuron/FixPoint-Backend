@@ -37,6 +37,6 @@ public class TechnicianController : ControllerBase
         {
             return NotFound("No technicians found");
         }
-        return Ok("Technicians retrieved");
+        return Ok(tlist);
     }
 }

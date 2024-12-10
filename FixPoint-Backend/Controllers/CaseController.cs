@@ -22,7 +22,7 @@ public class CaseController : ControllerBase
     public IActionResult AddCase([FromBody] Case casee)
     {
         _caseeService.AddCase(casee);
-        return Ok("Case: "+casee.GetID().ToString() + " added");
+        return Ok(casee);
     }
     
     [HttpDelete("[action]")]

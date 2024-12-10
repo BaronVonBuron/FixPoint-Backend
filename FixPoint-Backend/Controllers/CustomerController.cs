@@ -22,7 +22,7 @@ public class CustomerController : ControllerBase
     public IActionResult AddCustomer([FromBody] Customer customer)
     {
         _customerService.AddCustomer(customer);
-        return Ok("Customer: "+customer.GetID().ToString() + " added");
+        return Ok(customer);
     }
     
     [HttpDelete("[action]")]
