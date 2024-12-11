@@ -30,4 +30,10 @@ public class TechnicianService
         _logger.LogInformation("Getting all technicians");
         return _technicianRepository.GetTechnicians();
     }
+
+    public void AddTechnician(Technician technician)
+    {
+        _logger.LogInformation("Adding a technician");
+        _technicianRepository.AddTechnician(technician);
+    }
 }

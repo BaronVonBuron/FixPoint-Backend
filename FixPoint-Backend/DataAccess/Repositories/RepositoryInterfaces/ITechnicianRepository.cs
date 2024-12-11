@@ -6,4 +6,5 @@ public interface ITechnicianRepository
 {
     Technician GetTechnician(Guid id);
     List<Technician> GetTechnicians();
+    void AddTechnician(Technician technician);
 }

@@ -18,6 +18,13 @@ public class TechnicianController : ControllerBase
         _technicianService = technicianService;
     }
     
+    [HttpPost]
+    public IActionResult AddTechnician([FromBody] Technician technician)
+    {
+        _technicianService.AddTechnician(technician);
+        return Ok(technician);
+    }
+    
     [HttpGet("[action]")]
     public IActionResult GetTechnicianById(Guid id)
     {

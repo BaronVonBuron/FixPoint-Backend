@@ -11,6 +11,12 @@ public class TechnicianRepository : ITechnicianRepository
     {
         _context = context;
     }
+    
+    public void AddTechnician(Technician technician)
+    {
+        _context.Technicians.Add(technician);
+        _context.SaveChanges();
+    }
     public Technician GetTechnician(Guid id)
     {
         return _context.Technicians.Find(id);
