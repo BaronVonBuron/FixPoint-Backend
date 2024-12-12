@@ -9,4 +9,5 @@ public interface ICaseRepository
     Case GetCase(Guid id);
     List<Case> GetCases();
     void UpdateCase(Case casee);
+    List<Case> GetCasesByCustomer(Guid customerId);
 }

@@ -25,6 +25,23 @@ public class CaseController : ControllerBase
         return Ok(casee);
     }
     
+    [HttpGet("GetByCustomer")]
+    public IActionResult GetCasesByCustomer(string customerId)
+    {
+        if (string.IsNullOrEmpty(customerId))
+        {
+            return BadRequest("Customer ID is required.");
+        }
+
+        var cases = _caseeService.GetCasesByCustomer(customerId);
+        if (cases == null || cases.Count == 0)
+        {
+            return NotFound("No cases found for the specified customer.");
+        }
+
+        return Ok(cases);
+    }
+    
     [HttpDelete("[action]")]
     public IActionResult DeleteCase([FromBody] Case casee)
     {

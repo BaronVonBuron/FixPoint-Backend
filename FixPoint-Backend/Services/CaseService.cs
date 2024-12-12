@@ -27,6 +27,22 @@ public class CaseService
         _caseeRepository.AddCase(casee);
     }
     
+    public List<Case> GetCasesByCustomer(string customerId)
+    {
+        if (string.IsNullOrEmpty(customerId))
+        {
+            throw new ArgumentException("Customer ID is required", nameof(customerId));
+        }
+
+        _logger.LogInformation($"Getting cases by customer with ID: {customerId}");
+        if (!Guid.TryParse(customerId, out var customerGuid))
+        {
+            throw new ArgumentException("Invalid customer ID format", nameof(customerId));
+        }
+
+        return _caseeRepository.GetCasesByCustomer(customerGuid);
+    }
+    
     public void DeleteCase(Case casee)
     {
         if (casee == null)

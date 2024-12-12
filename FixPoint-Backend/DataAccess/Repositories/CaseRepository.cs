@@ -18,6 +18,11 @@ public class CaseRepository : ICaseRepository
         _context.SaveChanges();
     }
     
+    public List<Case> GetCasesByCustomer(Guid customerId)
+    {
+        return _context.Cases.Where(c => c.CustomerFK == customerId).ToList();
+    }
+    
     public void DeleteCase(Case casee)
     {
         _context.Cases.Remove(casee);

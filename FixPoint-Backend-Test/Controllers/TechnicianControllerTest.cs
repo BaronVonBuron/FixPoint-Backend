@@ -2,6 +2,7 @@
 using FixPoint_Backend.DataAccess.Repositories.RepositoryInterfaces;
 using FixPoint_Backend.Models;
 using FixPoint_Backend.Services;
+using FixPoint_Backend.Services.ServiceInterface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -24,7 +25,8 @@ public class TechnicianControllerTest
             _technicianRepositoryMock = new Mock<ITechnicianRepository>();
             _loggerMock = new Mock<ILogger<TechnicianController>>();
             _technicianService = new TechnicianService(_technicianRepositoryMock.Object, _loggerMock.Object);
-            _technicianController = new TechnicianController(_technicianService);
+            var authServiceMock = new Mock<IAuthService>();
+            _technicianController = new TechnicianController(_technicianService, authServiceMock.Object);
         }
 
         [Test]
