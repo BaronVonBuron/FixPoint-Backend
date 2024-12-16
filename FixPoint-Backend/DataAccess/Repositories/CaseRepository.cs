@@ -42,5 +42,6 @@ public class CaseRepository : ICaseRepository
     public void UpdateCase(Case casee)
     {
         _context.Cases.Update(casee);
+        _context.SaveChanges();
     }
 }

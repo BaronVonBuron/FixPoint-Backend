@@ -43,13 +43,16 @@ public class CaseService
         return _caseeRepository.GetCasesByCustomer(customerGuid);
     }
     
-    public void DeleteCase(Case casee)
+    public void DeleteCase(Guid caseId)
     {
+        var casee = _caseeRepository.GetCase(caseId);
         if (casee == null)
         {
-            nullCaseException(casee);
+            _logger.LogError($"Case with ID {caseId} not found.");
+            throw new KeyNotFoundException("Case not found.");
         }
-        _logger.LogInformation("Deleting a casee");
+    
+        _logger.LogInformation($"Deleting case with ID {caseId}");
         _caseeRepository.DeleteCase(casee);
     }
     

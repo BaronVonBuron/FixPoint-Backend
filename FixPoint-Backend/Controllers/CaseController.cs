@@ -43,10 +43,16 @@ public class CaseController : ControllerBase
     }
     
     [HttpDelete("[action]")]
-    public IActionResult DeleteCase([FromBody] Case casee)
+    public IActionResult DeleteCase(Guid caseId)
     {
-        _caseeService.DeleteCase(casee);
-        return Ok("Case: "+casee.GetID().ToString() + " deleted");
+        var casee = _caseeService.GetCase(caseId);
+        if (casee == null)
+        {
+            return NotFound(new { message = $"Case with ID {caseId} not found." });
+        }
+
+        _caseeService.DeleteCase(caseId);
+        return Ok(new { message = $"Sag med ID: {caseId} slettet." });
     }
     
     [HttpGet("[action]")]
@@ -75,6 +81,12 @@ public class CaseController : ControllerBase
     public IActionResult UpdateCase([FromBody] Case casee)
     {
         _caseeService.UpdateCase(casee);
-        return Ok("Case: "+casee.GetID().ToString() + " updated");
+
+        // Return a JSON object with a message and any relevant data
+        return Ok(new
+        {
+            message = $"Case {casee.GetID()} updated successfully",
+            caseId = casee.GetID()
+        });
     }
 }

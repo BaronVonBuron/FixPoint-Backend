@@ -27,6 +27,12 @@ public class MessageService
         _messageRepository.AddMessage(message);
     }
     
+    public List<Message> GetMessagesByCaseId(Guid caseId)
+    {
+        _logger.LogInformation($"Getting messages for case ID: {caseId}");
+        return _messageRepository.GetMessagesByCaseId(caseId);
+    }
+    
     public Message GetMessage(Guid id)
     {
         _logger.LogInformation("Getting a message by id");

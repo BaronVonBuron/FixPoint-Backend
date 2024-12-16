@@ -12,6 +12,11 @@ public class MessageRepository : IMessageRepository
         _context = context;
     }
     
+    public List<Message> GetMessagesByCaseId(Guid caseId)
+    {
+        return _context.Messages.Where(m => m.CaseFK == caseId).ToList();
+    }
+    
     public void AddMessage(Message message)
     {
         _context.Messages.Add(message);

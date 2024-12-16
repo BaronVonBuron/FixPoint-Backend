@@ -18,6 +18,19 @@ public class MessageController : ControllerBase
         _messageService = messageService;
     }
     
+    [HttpGet("[action]")]
+    public IActionResult GetMessagesByCaseId(Guid caseId)
+    {
+        List<Message> messages = _messageService.GetMessagesByCaseId(caseId);
+
+        if (messages == null || messages.Count == 0)
+        {
+            return NotFound($"No messages found for case ID: {caseId}");
+        }
+
+        return Ok(messages);
+    }
+    
     [HttpPost]
     public IActionResult AddMessage([FromBody] Message message)
     {
