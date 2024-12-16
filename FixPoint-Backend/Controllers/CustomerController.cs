@@ -25,6 +25,26 @@ public class CustomerController : ControllerBase
         return Ok(customer);
     }
     
+    [HttpPut("[action]")]
+    public IActionResult UpdateCustomer([FromBody] Customer customer)
+    {
+        try
+        {
+            _customerService.UpdateCustomer(customer);
+
+            // Return a JSON object with a success message
+            return Ok(new { message = "Customer updated successfully" });
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(new { error = ex.Message }); // Return JSON object with error message
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "An error occurred while updating the customer" }); // Return JSON object with generic error message
+        }
+    }
+    
     [HttpDelete("[action]")]
     public IActionResult DeleteCustomer([FromBody] Customer customer)
     {

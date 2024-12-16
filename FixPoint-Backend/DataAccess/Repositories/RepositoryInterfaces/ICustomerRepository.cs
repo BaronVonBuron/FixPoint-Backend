@@ -8,4 +8,5 @@ public interface ICustomerRepository
     void DeleteCustomer(Customer customer);
     Customer GetCustomer(Guid id);
     List<Customer> GetCustomers();
+    void UpdateCustomer(Customer customer);
 }

@@ -27,6 +27,15 @@ public class CustomerService
         _customerRepository.AddCustomer(customer);
     }
     
+    public void UpdateCustomer(Customer customer)
+    {
+        if (customer == null || customer.GetID() == Guid.Empty)
+            nullCaseException(customer);
+
+        _logger.LogInformation("Updating customer details for ID: {Id}", customer.GetID());
+        _customerRepository.UpdateCustomer(customer);
+    }
+    
     public void DeleteCustomer(Customer customer)
     {
         if (customer == null)
