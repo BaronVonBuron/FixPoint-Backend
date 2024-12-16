@@ -12,6 +12,22 @@ public class CustomerRepository : ICustomerRepository
         _context = context;
     }
     
+    public void UpdateCustomer(Customer customer)
+    {
+        var existingCustomer = _context.Customers.Find(customer.ID);
+        if (existingCustomer != null)
+        {
+            // Update fields
+            existingCustomer.Name = customer.Name;
+            existingCustomer.Email = customer.Email;
+            existingCustomer.Phonenumber = customer.Phonenumber;
+            existingCustomer.CPRCVR = customer.CPRCVR;
+
+            // Save changes
+            _context.SaveChanges();
+        }
+    }
+    
     public void AddCustomer(Customer customer)
     {
         _context.Customers.Add(customer);
