@@ -35,7 +35,15 @@ public class MessageController : ControllerBase
     public IActionResult AddMessage([FromBody] Message message)
     {
         _messageService.AddMessage(message);
-        return Ok("Message: "+message.GetID().ToString() + " added");
+
+        // Create a new response object with the message ID
+        var response = new
+        {
+            Message = "Message added successfully.",
+            MessageId = message.GetID() // Assuming GetID() retrieves the message's ID
+        };
+
+        return Ok(response); // Serialize response to JSON
     }
     
     [HttpGet("[action]")]
