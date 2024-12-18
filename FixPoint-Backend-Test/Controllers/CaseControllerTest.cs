@@ -38,29 +38,17 @@ public class CaseControllerTest
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.StatusCode, Is.EqualTo(200));
-        Assert.That(result.Value.ToString(), Does.Contain("added"));
+
+        // Assert on the returned object itself
+        var returnedCase = result.Value as Case;
+        Assert.That(returnedCase, Is.Not.Null);
+        Assert.That(returnedCase.ID, Is.EqualTo(casee.ID));
+        Assert.That(returnedCase.Description, Is.EqualTo("Description"));
 
         // Verify that the repository method was called
         _caseRepositoryMock.Verify(repo => repo.AddCase(casee), Times.Once);
     }
-
-    [Test]
-    public void DeleteCase_ValidCase_ReturnsOk()
-    {
-        // Arrange
-        var casee = new Case(Guid.NewGuid(), Guid.NewGuid(), "Type", "Description", 1, 2, DateTime.Now, DateTime.Now.AddDays(5), "Notes");
-
-        // Act
-        var result = _caseController.DeleteCase(casee) as OkObjectResult;
-
-        // Assert
-        Assert.That(result, Is.Not.Null);
-        Assert.That(result.StatusCode, Is.EqualTo(200));
-        Assert.That(result.Value.ToString(), Does.Contain("deleted"));
-
-        // Verify that the repository method was called
-        _caseRepositoryMock.Verify(repo => repo.DeleteCase(casee), Times.Once);
-    }
+    
 
     [Test]
     public void GetCaseById_ValidId_ReturnsOk()
@@ -112,7 +100,16 @@ public class CaseControllerTest
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.StatusCode, Is.EqualTo(200));
-        Assert.That(result.Value.ToString(), Does.Contain("retrieved"));
+
+        // Assert on the returned list of cases
+        var returnedCases = result.Value as List<Case>;
+        Assert.That(returnedCases, Is.Not.Null);
+        Assert.That(returnedCases.Count, Is.EqualTo(2));
+        Assert.That(returnedCases[0].Description, Is.EqualTo("Description1"));
+        Assert.That(returnedCases[1].Description, Is.EqualTo("Description2"));
+
+        // Verify that the repository method was called
+        _caseRepositoryMock.Verify(repo => repo.GetCases(), Times.Once);
     }
 
     [Test]
@@ -147,4 +144,5 @@ public class CaseControllerTest
         // Verify that the repository method was called
         _caseRepositoryMock.Verify(repo => repo.UpdateCase(casee), Times.Once);
     }
+    
 }

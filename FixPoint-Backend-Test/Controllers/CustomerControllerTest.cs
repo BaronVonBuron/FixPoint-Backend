@@ -38,7 +38,7 @@ public class CustomerControllerTest
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.StatusCode, Is.EqualTo(200));
-            Assert.That(result.Value.ToString(), Does.Contain("added"));
+            Assert.That(result.Value as Customer, Is.EqualTo(customer));
 
             // Verify that the repository method was called
             _customerRepositoryMock.Verify(repo => repo.AddCustomer(customer), Times.Once);
@@ -76,7 +76,7 @@ public class CustomerControllerTest
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.StatusCode, Is.EqualTo(200));
-            Assert.That(result.Value.ToString(), Does.Contain("retrieved"));
+            Assert.That(result.Value.Equals(customer));
         }
 
         [Test]

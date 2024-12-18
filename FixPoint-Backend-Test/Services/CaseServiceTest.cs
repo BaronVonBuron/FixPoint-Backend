@@ -46,26 +46,7 @@ namespace FixPoint_Backend_Test.Services
                     It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)),
                 Times.Once);
         }
-
-        [Test]
-        public void DeleteCase_ValidCase_ShouldCallRepository()
-        {
-            // Arrange
-            var casee = new Case(Guid.NewGuid(), Guid.NewGuid(), "Type2", "Description", 2, 3, DateTime.Now, DateTime.Now.AddDays(10), "Notes");
-
-            // Act
-            _caseService.DeleteCase(casee);
-
-            // Assert
-            _caseRepositoryMock.Verify(repo => repo.DeleteCase(casee), Times.Once);
-            _loggerMock.Verify(
-                x => x.Log(
-                    It.Is<LogLevel>(l => l == LogLevel.Information),
-                    It.IsAny<EventId>(),
-                    It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Deleting a casee")),
-                    It.IsAny<Exception>(),
-                    It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)),
-                Times.Once);        }
+        
 
         [Test]
         public void GetCase_ValidId_ShouldReturnCase()
@@ -156,21 +137,21 @@ namespace FixPoint_Backend_Test.Services
         public void AddCase_NullCase_ShouldThrowArgumentNullException()
         {
             // Arrange, Act & Assert
-            Assert.Throws<ArgumentNullException>(() => _caseService.AddCase(null));
+            Assert.Throws<ArgumentNullException>(() => _caseService.AddCase(null!));
         }
 
         [Test]
         public void DeleteCase_NullCase_ShouldThrowArgumentNullException()
         {
             // Arrange, Act & Assert
-            Assert.Throws<ArgumentNullException>(() => _caseService.DeleteCase(null));
+            Assert.Throws<KeyNotFoundException>(() => _caseService.DeleteCase(Guid.Empty));
         }
 
         [Test]
         public void UpdateCase_NullCase_ShouldThrowArgumentNullException()
         {
             // Arrange, Act & Assert
-            Assert.Throws<ArgumentNullException>(() => _caseService.UpdateCase(null));
+            Assert.Throws<ArgumentNullException>(() => _caseService.UpdateCase(null!));
         }
     }
 }

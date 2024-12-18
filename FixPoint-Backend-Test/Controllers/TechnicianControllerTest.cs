@@ -43,7 +43,7 @@ public class TechnicianControllerTest
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.StatusCode, Is.EqualTo(200));
-            Assert.That(result.Value.ToString(), Does.Contain("retrieved"));
+            Assert.That(result.Value as Technician, Is.EqualTo(technician));
         }
 
         [Test]
@@ -79,7 +79,7 @@ public class TechnicianControllerTest
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.StatusCode, Is.EqualTo(200));
-            Assert.That(result.Value.ToString(), Does.Contain("retrieved"));
+            Assert.That(result.Value as List<Technician>, Is.EqualTo(technicians));
         }
 
         [Test]

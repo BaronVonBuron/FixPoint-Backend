@@ -4,6 +4,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=NUnit3x/@EntryIndexedValue">db4927dd-2e12-48a7-9a84-2b7e3e31b9c8</s:String>
 	<s:Boolean x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/ShowAdvancedOptions/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7722b3b8_002Db971_002D476b_002D84d4_002De959bfc7c43e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CustomerControllerTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\andbu\OneDrive\Skole\CDS\FixPoint-Backend\FixPoint-Backend-Test" Presentation="&amp;lt;FixPoint-Backend-Test&amp;gt;" /&gt;&#xD;
+  &lt;Project Location="C:\Users\andbu\RiderProjects\FixPoint-Backend\FixPoint-Backend-Test" Presentation="&amp;lt;FixPoint-Backend-Test&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
